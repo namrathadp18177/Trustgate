@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: ankane/pgvector:latest
+    environment:
+      POSTGRES_DB: trustgate
+      POSTGRES_USER: trustgate
+      POSTGRES_PASSWORD: trustgate
+    ports:
+      - "5432:5432"
+    volumes:
+      - trustgate_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trustgate"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  schema-init:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      POSTGRES_HOST: postgres
+    command: ["python", "db/connection.py"]
+
+  ingestion:
+    build: .
+    depends_on:
+      - schema-init
+    environment:
+      POSTGRES_HOST: postgres
+    command: ["python", "ingestion/loader.py", "--path", "sample_data/raw_documents.jsonl"]
+
+  pipeline:
+    build: .
+    depends_on:
+      - ingestion
+    environment:
+      POSTGRES_HOST: postgres
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    command: ["python", "pipeline/run_pipeline.py"]
+
+  dashboard:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_HOST: postgres
+    ports:
+      - "8501:8501"
+    command: ["streamlit", "run", "dashboard/app.py", "--server.address=0.0.0.0"]
+
+volumes:
+  trustgate_pgdata:

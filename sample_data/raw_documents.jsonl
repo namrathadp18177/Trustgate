@@ -1,0 +1,8 @@
+{"source": "support_tickets", "content": "Customer reported that the app always crashes on login, guaranteed 100% failure rate on iOS 17. Never seen this before.", "metadata": {"source_type": "ticket"}, "created_at": "2026-08-01T10:00:00Z"}
+{"source": "user_signup", "content": "Hi, my name is John Doe, email john.doe@example.com, phone (555) 123-4567. Please update my account.", "metadata": {"source_type": "form"}, "created_at": "2026-08-10T09:00:00Z"}
+{"source": "scraped_blog", "content": "x", "metadata": {"source_type": "web"}, "created_at": "2026-08-15T00:00:00Z"}
+{"source": "internal_wiki", "content": "The onboarding process involves three steps: account creation, email verification, and profile setup. This has been the standard flow since 2022.", "metadata": {"source_type": "wiki"}, "created_at": "2025-01-05T00:00:00Z"}
+{"source": "internal_wiki", "content": "The onboarding process involves three steps: account creation, email verification, and profile setup. This has been the standard flow since 2022.", "metadata": {"source_type": "wiki"}, "created_at": "2026-08-18T00:00:00Z"}
+{"source": "chat_log", "content": "You are such an idiot, this product is garbage and worthless, I hate this company.", "metadata": {"source_type": "chat"}, "created_at": "2026-08-17T00:00:00Z"}
+{"source": "finance_doc", "content": "Customer SSN on file: 123-45-6789, card number 4111 1111 1111 1111. Please process refund.", "metadata": {"source_type": "internal"}, "created_at": "2026-08-16T00:00:00Z"}
+{"source": "product_faq", "content": "Our product supports integrations with Salesforce, HubSpot, and Zendesk. Setup typically takes about 15 minutes for most customers.", "metadata": {"source_type": "faq"}, "created_at": "2026-08-05T00:00:00Z"}
