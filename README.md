@@ -109,14 +109,3 @@ document, a near-duplicate pair, a document with an SSN and credit card
 number, a toxic message, and an over-confident claim, so a fresh run of the
 pipeline demonstrates every signal firing at least once.
 
-## Notes on resume claims
-
-- "Validating 100K+ records": the pipeline processes documents one at a time
-  today; for that scale, `run_pipeline.py` would need batching (fetch N at a
-  time) and the embedding step would move to a batched `encode()` call —
-  both straightforward extensions of the current structure.
-- "PASS/REVIEW/REJECT workflows": implemented as actual decision logic in
-  `trust_score.py`, not a placeholder — including the hard-floor override.
-- Be ready to explain why duplication uses cosine similarity over embeddings
-  rather than exact-match hashing (catches near-duplicates and paraphrases,
-  not just byte-identical content).
